@@ -1,5 +1,5 @@
 {
-    "name": "parsecsv/ParseCsv",
+    "name": "michaelsharman/ParseCsv",
     "description": "CSV data parser for PHP",
     "license": "MIT",
     "authors": [
