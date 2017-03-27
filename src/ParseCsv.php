@@ -1,6 +1,9 @@
 <?php
 
-class parseCSV {
+namespace ParseCsv;
+
+class ParseCsv
+{
 
     /*
     Class: parseCSV v0.4.3 beta
@@ -84,7 +87,7 @@ class parseCSV {
      * Use first line/entry as field names
      *
      * @access public
-     * @var bool
+     * @var    bool
      */
     public $heading = true;
 
@@ -93,7 +96,7 @@ class parseCSV {
      * Override field names
      *
      * @access public
-     * @var array
+     * @var    array
      */
     public $fields = array();
 
@@ -102,7 +105,7 @@ class parseCSV {
      * Sort csv by this field
      *
      * @access public
-     * @var string
+     * @var    string
      */
     public $sort_by = null;
 
@@ -111,7 +114,7 @@ class parseCSV {
      * Reverse the sort function
      *
      * @access public
-     * @var bool
+     * @var    bool
      */
     public $sort_reverse = false;
 
@@ -124,7 +127,7 @@ class parseCSV {
      * string  = SORT_STRING
      *
      * @access public
-     * @var string
+     * @var    string
      */
     public $sort_type = null;
 
@@ -133,7 +136,7 @@ class parseCSV {
      * Delimiter character
      *
      * @access public
-     * @var string
+     * @var    string
      */
     public $delimiter = ',';
 
@@ -142,7 +145,7 @@ class parseCSV {
      * Enclosure character
      *
      * @access public
-     * @var string
+     * @var    string
      */
     public $enclosure = '"';
 
@@ -151,7 +154,7 @@ class parseCSV {
      * Force enclosing all columns
      *
      * @access public
-     * @var bool
+     * @var    bool
      */
     public $enclose_all = false;
 
@@ -160,7 +163,7 @@ class parseCSV {
      * Basic SQL-Like conditions for row matching
      *
      * @access public
-     * @var string
+     * @var    string
      */
     public $conditions = null;
 
@@ -169,7 +172,7 @@ class parseCSV {
      * Number of rows to ignore from beginning of data
      *
      * @access public
-     * @var int
+     * @var    int
      */
     public $offset = null;
 
@@ -178,7 +181,7 @@ class parseCSV {
      * Limits the number of returned rows to the specified amount
      *
      * @access public
-     * @var int
+     * @var    int
      */
     public $limit = null;
 
@@ -187,7 +190,7 @@ class parseCSV {
      * Number of rows to analyze when attempting to auto-detect delimiter
      *
      * @access public
-     * @var int
+     * @var    int
      */
     public $auto_depth = 15;
 
@@ -196,7 +199,7 @@ class parseCSV {
      * Characters that should be ignored when attempting to auto-detect delimiter
      *
      * @access public
-     * @var string
+     * @var    string
      */
     public $auto_non_chars = "a-zA-Z0-9\n\r";
 
@@ -206,7 +209,7 @@ class parseCSV {
      * returns multiple possible delimiters (happens very rarely)
      *
      * @access public
-     * @var string
+     * @var    string
      */
     public $auto_preferred = ",;\t.:|";
 
@@ -215,7 +218,7 @@ class parseCSV {
      * Should we convert the csv encoding?
      *
      * @access public
-     * @var bool
+     * @var    bool
      */
     public $convert_encoding = false;
 
@@ -224,7 +227,7 @@ class parseCSV {
      * Set the input encoding
      *
      * @access public
-     * @var string
+     * @var    string
      */
     public $input_encoding = 'ISO-8859-1';
 
@@ -233,7 +236,7 @@ class parseCSV {
      * Set the output encoding
      *
      * @access public
-     * @var string
+     * @var    string
      */
     public $output_encoding = 'ISO-8859-1';
 
@@ -242,7 +245,7 @@ class parseCSV {
      * Line feed characters used by unparse, save, and output methods
      *
      * @access public
-     * @var string
+     * @var    string
      */
     public $linefeed = "\r";
 
@@ -251,7 +254,7 @@ class parseCSV {
      * Sets the output delimiter used by the output method
      *
      * @access public
-     * @var string
+     * @var    string
      */
     public $output_delimiter = ',';
 
@@ -260,7 +263,7 @@ class parseCSV {
      * Sets the output filename
      *
      * @access public
-     * @var string
+     * @var    string
      */
     public $output_filename = 'data.csv';
 
@@ -269,7 +272,7 @@ class parseCSV {
      * keep raw file data in memory after successful parsing (useful for debugging)
      *
      * @access public
-     * @var bool
+     * @var    bool
      */
     public $keep_file_data = false;
 
@@ -282,7 +285,7 @@ class parseCSV {
      * Current Filename
      *
      * @access public
-     * @var string
+     * @var    string
      */
     public $file;
 
@@ -291,7 +294,7 @@ class parseCSV {
      * Current file data
      *
      * @access public
-     * @var string
+     * @var    string
      */
     public $file_data;
 
@@ -308,7 +311,7 @@ class parseCSV {
      *     the parsed data yourself.
      *
      * @access public
-     * @var int
+     * @var    int
      */
     public $error = 0;
 
@@ -317,7 +320,7 @@ class parseCSV {
      * Detailed error information
      *
      * @access public
-     * @var array
+     * @var    array
      */
     public $error_info = array();
 
@@ -326,7 +329,7 @@ class parseCSV {
      * CSV titles if they exists
      *
      * @access public
-     * @var array
+     * @var    array
      */
     public $titles = array();
 
@@ -335,7 +338,7 @@ class parseCSV {
      * Two dimensional array of CSV data
      *
      * @access public
-     * @var array
+     * @var    array
      */
     public $data = array();
 
@@ -349,7 +352,8 @@ class parseCSV {
      * @param  [integer] limit      Limits the number of returned rows to specified amount
      * @param  [string]  conditions Basic SQL-like conditions for row matching
      */
-    public function __construct($input = null, $offset = null, $limit = null, $conditions = null, $keep_file_data = null) {
+    public function __construct($input = null, $offset = null, $limit = null, $conditions = null, $keep_file_data = null)
+    {
         if (!is_null($offset)) {
             $this->offset = $offset;
         }
@@ -387,7 +391,8 @@ class parseCSV {
      *
      * @return [bool]
      */
-    public function parse($input = null, $offset = null, $limit = null, $conditions = null) {
+    public function parse($input = null, $offset = null, $limit = null, $conditions = null)
+    {
         if (is_null($input)) {
             $input = $this->file;
         }
@@ -406,10 +411,10 @@ class parseCSV {
             }
 
             if (is_readable($input)) {
-                $this->data = $this->parse_file($input);
+                $this->data = $this->parseFile($input);
             } else {
                 $this->file_data = &$input;
-                $this->data = $this->parse_string();
+                $this->data = $this->parseString();
             }
 
             if ($this->data === false) {
@@ -432,7 +437,8 @@ class parseCSV {
      *
      * @return [bool]
      */
-    public function save($file = null, $data = array(), $append = false, $fields = array()) {
+    public function save($file = null, $data = array(), $append = false, $fields = array())
+    {
         if (empty($file)) {
             $file = &$this->file;
         }
@@ -440,7 +446,7 @@ class parseCSV {
         $mode = ($append) ? 'at' : 'wt';
         $is_php = (preg_match('/\.php$/i', $file)) ? true : false;
 
-        return $this->_wfile($file, $this->unparse($data, $fields, $append, $is_php), $mode);
+        return $this->wfile($file, $this->unparse($data, $fields, $append, $is_php), $mode);
     }
 
     /**
@@ -455,7 +461,8 @@ class parseCSV {
      *
      * @return [string]
      */
-    public function output($filename = null, $data = array(), $fields = array(), $delimiter = null) {
+    public function output($filename = null, $data = array(), $fields = array(), $delimiter = null)
+    {
         if (empty($filename)) {
             $filename = $this->output_filename;
         }
@@ -488,7 +495,8 @@ class parseCSV {
      * @param  [string] $input  Input character encoding, uses default if left blank
      * @param  [string] $output Output character encoding, uses default if left blank
      */
-    public function encoding($input = null, $output = null) {
+    public function encoding($input = null, $output = null)
+    {
         $this->convert_encoding = true;
         if (!is_null($input)) {
             $this->input_encoding = $input;
@@ -513,7 +521,8 @@ class parseCSV {
      *
      * @return [string]
      */
-    public function auto($file = null, $parse = true, $search_depth = null, $preferred = null, $enclosure = null) {
+    public function auto($file = null, $parse = true, $search_depth = null, $preferred = null, $enclosure = null)
+    {
         if (is_null($file)) {
             $file = $this->file;
         }
@@ -531,7 +540,7 @@ class parseCSV {
         }
 
         if (empty($this->file_data)) {
-            if ($this->_check_data($file)) {
+            if ($this->checkData($file)) {
                 $data = &$this->file_data;
             } else {
                 return false;
@@ -585,7 +594,7 @@ class parseCSV {
         $depth = ($to_end) ? $n - 1 : $n;
         $filtered = array();
         foreach ($chars as $char => $value) {
-            if ($match = $this->_check_count($char, $value, $depth, $preferred)) {
+            if ($match = $this->checkCount($char, $value, $depth, $preferred)) {
                 $filtered[$match] = $char;
             }
         }
@@ -596,7 +605,7 @@ class parseCSV {
 
         // parse data
         if ($parse) {
-            $this->data = $this->parse_string();
+            $this->data = $this->parseString();
         }
 
         return $this->delimiter;
@@ -608,37 +617,39 @@ class parseCSV {
 
     /**
      * Parse File
-     * Read file to string and call parse_string()
+     * Read file to string and call parseString()
      *
      * @access public
      *
-     * @param  [string] $file Local CSV file
+     * @param [string] $file Local CSV file
      *
      * @return [array|bool]
      */
-    public function parse_file($file = null) {
+    public function parseFile($file = null)
+    {
         if (is_null($file)) {
             $file = $this->file;
         }
 
         if (empty($this->file_data)) {
-            $this->load_data($file);
+            $this->loadData($file);
         }
 
-        return (!empty($this->file_data)) ? $this->parse_string() : false;
+        return (!empty($this->file_data)) ? $this->parseString() : false;
     }
 
     /**
      * Parse CSV strings to arrays
      *
      * @access public
-     * @param   data   CSV string
+     * @param  data   CSV string
      *
-     * @return  2D array with CSV data, or false on failure
+     * @return 2D array with CSV data, or false on failure
      */
-    public function parse_string($data = null) {
+    public function parseString($data = null)
+    {
         if (empty($data)) {
-            if ($this->_check_data()) {
+            if ($this->checkData()) {
                 $data = &$this->file_data;
             } else {
                 return false;
@@ -696,7 +707,8 @@ class parseCSV {
                     $current .= $ch;
                     $i++;
                 } elseif ($nch != $this->delimiter && $nch != "\r" && $nch != "\n") {
-                    for ($x = ($i + 1);isset($data{$x}) && ltrim($data{$x}, $white_spaces) == ''; $x++) {}
+                    for ($x = ($i + 1); isset($data{$x}) && ltrim($data{$x}, $white_spaces) == ''; $x++) {
+                    }
                     if ($data{$x} == $this->delimiter) {
                         $enclosed = false;
                         $i = $x;
@@ -737,7 +749,7 @@ class parseCSV {
 
                 // end of row
                 if ($ch == "\n" || $ch == "\r" || $ch === false) {
-                    if ($this->_validate_offset($row_count) && $this->_validate_row_conditions($row, $this->conditions)) {
+                    if ($this->validateOffset($row_count) && $this->validateRowConditions($row, $this->conditions)) {
                         if ($this->heading && empty($head)) {
                             $head = $row;
                         } elseif (empty($this->fields) || (!empty($this->fields) && (($this->heading && $row_count > 0) || !$this->heading))) {
@@ -745,12 +757,12 @@ class parseCSV {
                                 if (isset($rows[$row[$this->sort_by]])) {
                                     $rows[$row[$this->sort_by] . '_0'] = &$rows[$row[$this->sort_by]];
                                     unset($rows[$row[$this->sort_by]]);
-                                    for ($sn = 1;isset($rows[$row[$this->sort_by] . '_' . $sn]); $sn++) {}
+                                    for ($sn = 1; isset($rows[$row[$this->sort_by] . '_' . $sn]); $sn++) {
+                                    }
                                     $rows[$row[$this->sort_by] . '_' . $sn] = $row;
                                 } else {
                                     $rows[$row[$this->sort_by]] = $row;
                                 }
-
                             } else {
                                 $rows[] = $row;
                             }
@@ -803,16 +815,17 @@ class parseCSV {
      * Create CSV data from array
      *
      * @access public
-     * @param   data        2D array with data
-     * @param   fields      field names
-     * @param   append      if true, field names will not be output
-     * @param   is_php      if a php die() call should be put on the first
+     * @param  data        2D array with data
+     * @param  fields      field names
+     * @param  append      if true, field names will not be output
+     * @param  is_php      if a php die() call should be put on the first
      *                      line of the file, this is later ignored when read.
-     * @param   delimiter   field delimiter to use
+     * @param  delimiter   field delimiter to use
      *
-     * @return  CSV data (text string)
+     * @return CSV data (text string)
      */
-    public function unparse($data = array(), $fields = array(), $append = false, $is_php = false, $delimiter = null) {
+    public function unparse($data = array(), $fields = array(), $append = false, $is_php = false, $delimiter = null)
+    {
         if (!is_array($data) || empty($data)) {
             $data = &$this->data;
         }
@@ -831,7 +844,7 @@ class parseCSV {
         // create heading
         if ($this->heading && !$append && !empty($fields)) {
             foreach ($fields as $key => $value) {
-                $entry[] = $this->_enclose_value($value, $delimiter);
+                $entry[] = $this->encloseValue($value, $delimiter);
             }
 
             $string .= implode($delimiter, $entry) . $this->linefeed;
@@ -841,7 +854,7 @@ class parseCSV {
         // create data
         foreach ($data as $key => $row) {
             foreach ($row as $field => $value) {
-                $entry[] = $this->_enclose_value($value, $delimiter);
+                $entry[] = $this->encloseValue($value, $delimiter);
             }
 
             $string .= implode($delimiter, $entry) . $this->linefeed;
@@ -859,11 +872,12 @@ class parseCSV {
      * Load local file or string
      *
      * @access public
-     * @param   input   local CSV file
+     * @param  input   local CSV file
      *
-     * @return  true or false
+     * @return true or false
      */
-    public function load_data($input = null) {
+    public function loadData($input = null)
+    {
         $data = null;
         $file = null;
 
@@ -875,7 +889,7 @@ class parseCSV {
             $data = $input;
         }
 
-        if (!empty($data) || $data = $this->_rfile($file)) {
+        if (!empty($data) || $data = $this->rfile($file)) {
             if ($this->file != $file) {
                 $this->file = $file;
             }
@@ -907,12 +921,13 @@ class parseCSV {
      * Validate a row against specified conditions
      *
      * @access protected
-     * @param   row          array with values from a row
-     * @param   conditions   specified conditions that the row must match
+     * @param  row          array with values from a row
+     * @param  conditions   specified conditions that the row must match
      *
-     * @return  true of false
+     * @return true of false
      */
-    protected function _validate_row_conditions($row = array(), $conditions = null) {
+    protected function validateRowConditions($row = array(), $conditions = null)
+    {
         if (!empty($row)) {
             if (!empty($conditions)) {
                 $conditions = (strpos($conditions, ' OR ') !== false) ? explode(' OR ', $conditions) : array($conditions);
@@ -923,12 +938,12 @@ class parseCSV {
                         $and = '';
 
                         foreach ($value as $k => $v) {
-                            $and .= $this->_validate_row_condition($row, $v);
+                            $and .= $this->validateRowCondition($row, $v);
                         }
 
                         $or .= (strpos($and, '0') !== false) ? '0' : '1';
                     } else {
-                        $or .= $this->_validate_row_condition($row, $value);
+                        $or .= $this->validateRowCondition($row, $value);
                     }
                 }
 
@@ -945,12 +960,13 @@ class parseCSV {
      * Validate a row against a single condition
      *
      * @access protected
-     * @param   row          array with values from a row
-     * @param   condition   specified condition that the row must match
+     * @param  row          array with values from a row
+     * @param  condition   specified condition that the row must match
      *
-     * @return  true of false
+     * @return true of false
      */
-    protected function _validate_row_condition($row, $condition) {
+    protected function validateRowCondition($row, $condition)
+    {
         $operators = array(
             '=', 'equals', 'is',
             '!=', 'is not',
@@ -1015,11 +1031,12 @@ class parseCSV {
      * Validates if the row is within the offset or not if sorting is disabled
      *
      * @access protected
-     * @param   current_row   the current row number being processed
+     * @param  current_row   the current row number being processed
      *
-     * @return  true of false
+     * @return true of false
      */
-    protected function _validate_offset($current_row) {
+    protected function validateOffset($current_row)
+    {
         if ($this->sort_by === null && $this->offset !== null && $current_row < $this->offset) {
             return false;
         }
@@ -1036,7 +1053,8 @@ class parseCSV {
      *
      * @return Processed value
      */
-    protected function _enclose_value($value = null, $delimiter = null) {
+    protected function encloseValue($value = null, $delimiter = null)
+    {
         if (is_null($delimiter)) {
             $delimiter = $this->delimiter;
         }
@@ -1056,17 +1074,18 @@ class parseCSV {
      * Check file data
      *
      * @access protected
-     * @param   file   local filename
+     * @param  file   local filename
      *
-     * @return  true or false
+     * @return true or false
      */
-    protected function _check_data($file = null) {
+    protected function checkData($file = null)
+    {
         if (empty($this->file_data)) {
             if (is_null($file)) {
                 $file = $this->file;
             }
 
-            return $this->load_data($file);
+            return $this->loadData($file);
         }
 
         return true;
@@ -1084,7 +1103,8 @@ class parseCSV {
      *
      * @return special string used for delimiter selection, or false
      */
-    protected function _check_count($char, $array, $depth, $preferred) {
+    protected function checkCount($char, $array, $depth, $preferred)
+    {
         if ($depth == count($array)) {
             $first = null;
             $equal = null;
@@ -1118,11 +1138,12 @@ class parseCSV {
      * Read local file
      *
      * @access protected
-     * @param   file   local filename
+     * @param  file   local filename
      *
-     * @return  Data from file, or false on failure
+     * @return Data from file, or false on failure
      */
-    protected function _rfile($file = null) {
+    protected function rfile($file = null)
+    {
         if (is_readable($file)) {
             if (!($fh = fopen($file, 'r'))) {
                 return false;
@@ -1140,14 +1161,15 @@ class parseCSV {
      * Write to local file
      *
      * @access protected
-     * @param   file     local filename
-     * @param   string   data to write to file
-     * @param   mode     fopen() mode
-     * @param   lock     flock() mode
+     * @param  file     local filename
+     * @param  string   data to write to file
+     * @param  mode     fopen() mode
+     * @param  lock     flock() mode
      *
-     * @return  true or false
+     * @return true or false
      */
-    protected function _wfile($file, $string = '', $mode = 'wb', $lock = 2) {
+    protected function wfile($file, $string = '', $mode = 'wb', $lock = 2)
+    {
         if ($fp = fopen($file, $mode)) {
             flock($fp, $lock);
             $re = fwrite($fp, $string);

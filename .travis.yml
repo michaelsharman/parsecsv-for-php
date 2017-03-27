@@ -12,6 +12,6 @@ script:
 
 notifications:
   email:
-    - will.knauss@gmail.com
+    - michael@michaelsharman.com
   on_success: never
   on_failure: always

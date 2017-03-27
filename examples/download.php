@@ -1,13 +1,11 @@
 <?php
 
+namespace ParseCsv\examples;
 
-# include parseCSV class.
-require_once('../parsecsv.lib.php');
+use ParseCsv\ParseCsv;
 
-
-# create new parseCSV object.
-$csv = new parseCSV();
-
+# create new ParseCsv object.
+$csv = new ParseCsv();
 
 # Parse '_books.csv' using automatic delimiter detection...
 $csv->auto('_books.csv');

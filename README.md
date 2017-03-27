@@ -1,31 +1,29 @@
 # parseCSV
 
-Note: parseCSV is now being revised to PHP 5 standards. If you have an issue or a feature request we encourage you to open an issue.
+### March 2017
+Forked to make PSR compatible.
 
-parseCSV is an easy to use PHP class that reads and writes CSV data properly. It
+--
+
+ParseCsv is an easy to use PHP class that reads and writes CSV data properly. It
 fully conforms to the specifications outlined on the on the
 [Wikipedia article][CSV]. It has many advanced features which help make your
 life easier when dealing with CSV data.
 
-This library was originaly created in early 2007 by [jimeh](https://github.com/jimeh) due to the lack of built-in
-and third-party support for handling CSV data in PHP.
+This library was originaly created in early 2007 by [jimeh](https://github.com/jimeh) due to the lack of built-in and third-party support for handling CSV data in PHP.
 
 [csv]: http://en.wikipedia.org/wiki/Comma-separated_values
 
 ## Installation
 Installation is easy using Composer. Include the following in your composer.json
 ```
-"parsecsv/php-parsecsv": "0.4.5"
+"michaelsharman/parsecsv-for-php": "dev-master"
 ```
 
-You may also manually include the parsecsv.lib.php file
-```php
-require_once 'parsecsv.lib.php';
-```
 
 ## Features
 
-* parseCSV is the only complete and fully featured CSV solution for PHP (as
+* ParseCsv is the only complete and fully featured CSV solution for PHP (as
   far as I know).
 * Supports enclosed values, enclosed commas, double quotes and new lines.
 * Automatic delimiter character detection.
@@ -46,14 +44,18 @@ require_once 'parsecsv.lib.php';
 **General**
 
 ```php
-$csv = new parseCSV('data.csv');
+use ParseCsv\ParseCsv;
+
+$csv = new ParseCsv('data.csv');
 print_r($csv->data);
 ```
 
 **Tab delimited, and encoding conversion**
 
 ```php
-$csv = new parseCSV();
+use ParseCsv\ParseCsv;
+
+$csv = new ParseCsv();
 $csv->encoding('UTF-16', 'UTF-8');
 $csv->delimiter = "\t";
 $csv->parse('data.tsv');
@@ -63,7 +65,9 @@ print_r($csv->data);
 **Auto-detect delimiter character**
 
 ```php
-$csv = new parseCSV();
+use ParseCsv\ParseCsv;
+
+$csv = new ParseCsv();
 $csv->auto('data.csv');
 print_r($csv->data);
 ```
@@ -71,7 +75,9 @@ print_r($csv->data);
 **Modify data in a CSV file**
 
 ```php
-$csv = new parseCSV();
+use ParseCsv\ParseCsv;
+
+$csv = new ParseCsv();
 $csv->sort_by = 'id';
 $csv->parse('data.csv');
 # "4" is the value of the "id" column of the CSV row
@@ -84,7 +90,9 @@ $csv->save();
 _Only recommended when you know the extact structure of the file._
 
 ```php
-$csv = new parseCSV();
+use ParseCsv\ParseCsv;
+
+$csv = new ParseCsv();
 $csv->save('data.csv', array(array('1986', 'Home', 'Nowhere', '')), true);
 ```
 
@@ -92,14 +100,16 @@ $csv->save('data.csv', array(array('1986', 'Home', 'Nowhere', '')), true);
 a file and download it**
 
 ```php
-$csv = new parseCSV();
+use ParseCsv\ParseCsv;
+
+$csv = new ParseCsv();
 $csv->output('movies.csv', $array, array('field 1', 'field 2'), ',');
 ```
 
 
 ## Credits
 
-* parseCSV is based on the concept of [Ming Hong Ng][ming]'s [CsvFileParser][]
+* ParseCsv is based on the concept of [Ming Hong Ng][ming]'s [CsvFileParser][]
   class.
 
 [ming]: http://minghong.blogspot.com/

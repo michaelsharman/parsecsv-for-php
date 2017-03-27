@@ -1,14 +1,9 @@
-<pre>
 <?php
 
+use ParseCsv\ParseCsv;
 
-# include parseCSV class.
-require_once('../parsecsv.lib.php');
-
-
-# create new parseCSV object.
-$csv = new parseCSV();
-
+# create new ParseCsv object.
+$csv = new ParseCsv();
 
 # Parse '_books.csv' using automatic delimiter detection...
 $csv->auto('_books.csv');
@@ -26,7 +21,7 @@ $csv->auto('_books.csv');
 
 
 ?>
-</pre>
+
 <style type="text/css" media="screen">
 	table { background-color: #BBB; }
 	th { background-color: #EEE; }

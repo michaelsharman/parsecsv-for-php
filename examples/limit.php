@@ -1,14 +1,12 @@
 <pre>
 <?php
 
+namespace ParseCsv\examples;
 
-# include parseCSV class.
-require_once('../parsecsv.lib.php');
+use ParseCsv\ParseCsv;
 
-
-# create new parseCSV object.
-$csv = new parseCSV();
-
+# create new ParseCsv object.
+$csv = new ParseCsv();
 
 # if sorting is enabled, the whole CSV file
 # will be processed and sorted and then rows
