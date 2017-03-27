@@ -1,5 +1,7 @@
 <?php
 
+require './config.php';
+
 use ParseCsv\ParseCsv;
 
 # create new ParseCsv object.
@@ -15,14 +17,11 @@ $csv->auto('_books.csv');
 # ...and then use the parse() function.
 // $csv->parse('_books.csv');
 
-
 # Output result.
 // print_r($csv->data);
-
-
 ?>
 
-<style type="text/css" media="screen">
+<style>
 	table { background-color: #BBB; }
 	th { background-color: #EEE; }
 	td { background-color: #FFF; }
